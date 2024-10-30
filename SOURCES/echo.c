@@ -6,7 +6,7 @@
 /*   By: gprunet <gprunet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:27:45 by tfauve-p          #+#    #+#             */
-/*   Updated: 2024/10/07 12:30:15 by gprunet          ###   ########.fr       */
+/*   Updated: 2024/10/29 14:17:10 by gprunet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,11 @@ int	ft_count_good_flags(char **tab)
 	while (tab[i])
 	{
 		if (ft_is_good_flag(tab[i]) == 1)
-		{
-			printf("bon flag = %s\n", tab[i]);
 			j++;
-		}
 		if (ft_is_wrong_flag(tab[i]) == 1)
-		{
-			printf("bon flag = %s\n", tab[i]);
 			j++;
-		}
+		if (ft_is_wrong_flag(tab[i]) == 1)
+			return (-1);
 		i++;
 	}
 	return (j);
@@ -105,6 +101,7 @@ int	ft_echo(char **args)
 
 int	ft_echo_pipe(t_struct *data, t_args *arg, char **args, char **path)
 {
+	int		status;
 	int		option;
 	int		i;
 
@@ -125,6 +122,7 @@ int	ft_echo_pipe(t_struct *data, t_args *arg, char **args, char **path)
 		printf("%s ", args[i++]);
 	if (option == 0)
 		printf("\n");
+	status = 0;
 	ft_free_child(args, data, arg, path);
-	exit(EXIT_SUCCESS);
+	exit(status);
 }

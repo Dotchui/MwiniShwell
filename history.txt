@@ -1,1 +1,1 @@
-echo hehe > output.txt | cat < output.txt 
+pwd | ls
